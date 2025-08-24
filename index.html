@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MimicToMastery • Slack‑ish Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- 🔐 Login Screen -->
+  <div id="loginScreen">
+    <h2>Welcome to the Mimic to Mastery Chat</h2>
+    <input id="loginUsername" 
+           type="text" 
+           placeholder="Enter your name"
+           autocomplete="off"
+           autocorrect="off"
+           autocapitalize="none"
+           spellcheck="false">
+    <select id="loginRole">
+      <option value="agent">Agent</option>
+      <option value="moderator">Moderator</option>
+    </select>
+    <button id="loginBtn">Join Chat</button>
+  </div>
+
+  <!-- 💬 Chat UI (hidden until login) -->
+  <div id="chatUI" style="display: none;">
+    <div id="app">
+      <aside id="sidebar">
+        <div class="brand">Slack‑ish</div>
+        <div class="me">
+          <label>Display name</label>
+          <input id="username" placeholder="Your name" readonly />
+        </div>
+        <div class="userRole">
+          <span id="roleBadge"></span>
+        </div>
+
+        <div class="rooms">
+          <div class="rooms-header">
+            <span>Channels</span>
+            <button id="newRoomBtn" title="Create channel">+</button>
+          </div>
+          <ul id="roomList"></ul>
+        </div>
+      </aside>
+
+      <main id="main">
+        <header id="roomHeader">#general</header>
+        <ul id="messages"></ul>
+        <form id="composer" autocomplete="off">
+          <input type="text" 
+                 id="messageInput" 
+                 name="no-save-message" 
+                 placeholder="Type your message..." 
+                 autocomplete="off" 
+                 autocorrect="off" 
+                 autocapitalize="none" 
+                 spellcheck="false">
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <!-- 🔌 Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
